@@ -1,0 +1,111 @@
+.explore-menu{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 20px 0;
+    overflow: visible;
+}
+
+.explore-menu h1{
+    color: var(--text-primary);
+    font-weight: 700;
+    font-size: 36px;
+    position: relative;
+    display: inline-block;
+}
+
+.explore-menu h1::after{
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #ff6b35, #f7931e);
+    border-radius: 2px;
+}
+
+.explore-menu-text {
+    color: var(--text-secondary);
+    font-size: 18px;
+    line-height: 1.7;
+    max-width: 700px;
+    background: var(--hover-bg);
+    padding: 20px 25px;
+    border-radius: 16px;
+    border-left: 4px solid #ff6b35;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.1);
+}
+
+.explore-menu-tabs{
+    max-width: 60%;
+    color: var(--text-light);
+}
+
+.explore-menu-list{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    text-align: center;
+    margin-top: 20px 0px;
+    padding: 15px 10px;
+    overflow-x: auto;
+}
+
+.explore-menu-list::-webkit-scrollbar{
+    display: none;
+}
+
+.explore-menu-list-item img{
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px var(--shadow-color);
+}
+
+.explore-menu-list-item img:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+    border-radius: 50%;
+}
+
+.explore-menu-list-item p{
+    margin-top: 12px;
+    color: var(--text-primary);
+    font-size: max(1.4vw, 16px);
+    cursor: pointer;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.explore-menu-list-item p:hover {
+    color: #ff6b35;
+}
+
+.explore-menu hr{
+    margin: 15px 0px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--border-color), #ff6b35, var(--border-color));
+    border: none;
+}
+
+.explore-menu-list-item img.active{
+    border: 3px solid #ff6b35;
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+}
+
+@media (max-width:1050px){
+    .explore-menu-text{
+        max-width: 100%;
+        font-size: 15px;
+    }
+    
+    .explore-menu h1 {
+        font-size: 28px;
+    }
+}

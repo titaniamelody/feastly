@@ -1,0 +1,60 @@
+.categories-form {
+  gap: 18px;
+  padding: 18px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  max-width: 520px;
+}
+
+.categories-field input {
+  padding: 10px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  outline: none;
+  background: var(--input-bg);
+  color: var(--text-primary);
+}
+
+.categories-list {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 720px;
+}
+
+.categories-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+}
+
+.categories-row img {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ff6b35;
+}
+
+.categories-name {
+  flex: 1;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.categories-row .delete-icon {
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: color 0.2s;
+}
+
+.categories-row .delete-icon:hover {
+  color: #ff6b35;
+}
+

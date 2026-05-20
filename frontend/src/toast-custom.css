@@ -1,0 +1,54 @@
+/* Custom toast styles matching website color scheme */
+.Toastify__toast-container {
+  z-index: 10000 !important;
+}
+
+.Toastify__toast-theme--colored.Toastify__toast--success {
+  background: #ff6b35 !important;
+  color: white !important;
+  border-radius: 8px !important;
+}
+
+.Toastify__toast-theme--colored.Toastify__toast--error {
+  background: #dc3545 !important;
+  color: white !important;
+  border-radius: 8px !important;
+}
+
+.Toastify__toast-theme--colored.Toastify__toast--info {
+  background: #49557e !important;
+  color: white !important;
+  border-radius: 8px !important;
+}
+
+.Toastify__toast-theme--colored.Toastify__toast--warning {
+  background: #ffc107 !important;
+  color: #333 !important;
+  border-radius: 8px !important;
+}
+
+/* Progress bar styling */
+.Toastify__progress-bar-theme--colored.Toastify__progress-bar--success {
+  background: #fff !important;
+}
+
+.Toastify__progress-bar-theme--colored.Toastify__progress-bar--error {
+  background: #fff !important;
+}
+
+.Toastify__progress-bar-theme--colored.Toastify__progress-bar--info {
+  background: #fff !important;
+}
+
+.Toastify__progress-bar-theme--colored.Toastify__progress-bar--warning {
+  background: #333 !important;
+}
+
+/* Close button styling */
+.Toastify__close-button {
+  opacity: 0.8 !important;
+}
+
+.Toastify__close-button:hover {
+  opacity: 1 !important;
+}

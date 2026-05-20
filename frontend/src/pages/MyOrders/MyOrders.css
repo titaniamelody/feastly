@@ -1,0 +1,79 @@
+.my-orders {
+    margin-top: 50px;
+}
+
+.my-orders h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    color: var(--text-primary);
+}
+
+.my-orders .container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.my-orders-order {
+    display: grid;
+    grid-template-columns: 0.5fr 2fr 1fr 1fr 1.5fr 1fr;
+    align-items: center;
+    gap: 30px;
+    padding: 20px;
+    border: 1px solid var(--accent-color);
+    border-radius: 8px;
+    font-size: 14px;
+    color: var(--text-primary);
+    background-color: var(--card-bg);
+}
+
+.my-orders-order img {
+    width: 50px;
+}
+
+.my-orders-order b {
+    color: var(--text-primary);
+}
+
+.my-orders-order button {
+    padding: 12px 16px;
+    background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-hover) 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    outline: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.my-orders-order button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.35);
+}
+
+.my-orders-order span {
+    color: var(--accent-color);
+    margin-right: 5px;
+}
+
+body.dark-mode .my-orders-order {
+    background-color: var(--card-bg);
+    color: var(--text-primary);
+}
+
+body.dark-mode .my-orders-order button {
+    color: #ffffff;
+    background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-hover) 100%);
+}
+
+@media (max-width: 900px) {
+    .my-orders-order {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        text-align: center;
+    }
+}

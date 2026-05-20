@@ -1,0 +1,203 @@
+.place-order-container {
+    margin-top: 30px;
+    padding: 0 5vw;
+}
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    margin: 10px 0 0 -5vw;
+    background: rgba(255, 107, 53, 0.1);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #ff6b35;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    background: rgba(255, 107, 53, 0.2);
+    transform: translateX(-4px);
+}
+
+body.dark-mode .back-btn {
+    background: rgba(255, 107, 53, 0.15);
+}
+
+body.dark-mode .back-btn:hover {
+    background: rgba(255, 107, 53, 0.25);
+}
+
+.place-order{
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 80px;
+    padding: 0;
+    margin-top: 40px;
+}
+
+.place-order-left{
+    width: 100%;
+    max-width: max(30%, 500px);
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px var(--shadow-color);
+}
+
+.place-order-left .title{
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: var(--text-primary);
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.place-order-left .title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, #ff6b35, #f7931e);
+    border-radius: 2px;
+}
+
+.place-order-left input[type="text"],
+.place-order-left input[type="email"]{
+    margin-bottom: 15px;
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 15px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.place-order-left .multi-fields{
+    display: flex;
+    gap: 15px;
+}
+
+.place-order-right{
+    width: 100%;
+    max-width: max(40%, 500px);
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px var(--shadow-color);
+}
+
+.place-order .cart-total h2 {
+    color: var(--text-primary);
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.place-order .cart-total button{
+    margin-top: 20px;
+    width: 100%;
+    border: none;
+    color: white;
+    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+    padding: 16px;
+    border-radius: 12px;
+    cursor: pointer;    
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+}
+
+.place-order .cart-total button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+}
+
+.payment-method {
+    margin-top: 25px;
+    padding-top: 25px;
+    border-top: 1px solid var(--border-color);
+}
+
+.payment-method h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.payment-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.payment-options label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    padding: 14px 16px;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    transition: all 0.3s;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.payment-options label:hover {
+    background-color: var(--hover-bg);
+    border-color: #ff6b35;
+}
+
+.payment-options input[type="radio"] {
+    cursor: pointer;
+    accent-color: #ff6b35;
+    width: 18px;
+    height: 18px;
+}
+
+.payment-options label:has(input:checked) {
+    background-color: var(--hover-bg);
+    border-color: #ff6b35;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.2);
+}
+
+@media (max-width: 900px) {
+    .place-order {
+        flex-direction: column;
+        gap: 40px;
+    }
+    
+    .place-order-left,
+    .place-order-right {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 500px) {
+    .place-order-container {
+        padding: 0 3vw;
+    }
+    
+    .back-btn {
+        padding: 10px 16px;
+        margin: 10px 0 0 -3vw;
+        font-size: 13px;
+    }
+    
+    .place-order {
+        margin-top: 30px;
+    }
+}
