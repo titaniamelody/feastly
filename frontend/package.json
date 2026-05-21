@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "vite": "^5.x.x",
+    "@vitejs/plugin-react": "^4.x.x",
     "axios": "^1.13.5",
     "axois": "^0.0.1-security",
     "gsap": "^3.14.2",
