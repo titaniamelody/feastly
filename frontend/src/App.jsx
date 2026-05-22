@@ -60,6 +60,7 @@ const App = () => {
   const [searchQuery, setSearchQuery] = useState("")
   const [showSplash, setShowSplash] = useState(true)
   const [skipSplash, setSkipSplash] = useState(false)
+  const [splashShownOnce, setSplashShownOnce] = useState(false)
   const location = useLocation()
 
   useEffect(() => {
@@ -91,16 +92,13 @@ const App = () => {
     window.scrollTo(0, 0)
   }, [location.pathname])
 
-  // Show splash screen on every route change, unless skipSplash is true
-  // Don't show splash screen for admin routes
+  // Hide splash screen on admin routes
   useEffect(() => {
     const isAdminRoute = location.pathname.startsWith('/admin')
     
-    if (isAdminRoute || skipSplash) {
-      setSkipSplash(false)
+    if (isAdminRoute) {
       setShowSplash(false)
-    } else {
-      setShowSplash(true)
+      setSplashShownOnce(true)
     }
   }, [location.pathname])
 

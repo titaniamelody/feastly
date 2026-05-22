@@ -65,6 +65,7 @@ const Navbar = ({ openAuth, setSkipSplash }) => {
     isAdmin,
     setIsAdmin,
     setCartItems,
+    cartItems,
   } = useContext(StoreContext)
   const { isDarkMode, toggleTheme } = useContext(ThemeContext)
 
@@ -82,6 +83,15 @@ const Navbar = ({ openAuth, setSkipSplash }) => {
       storedEmail === "titaniamelody@gmail.com")
 
   const isHomePage = location.pathname === '/'
+
+  // Calculate total cart items count
+  const getCartItemsCount = () => {
+    let count = 0
+    for (const itemId in cartItems) {
+      count += cartItems[itemId]
+    }
+    return count
+  }
 
   const closeSidebar = () => setSidebarOpen(false)
 
@@ -348,7 +358,7 @@ const Navbar = ({ openAuth, setSkipSplash }) => {
           <Link to="/cart" onClick={closeSidebar}>
             <FiShoppingCart className="navbar-icon" />
           </Link>
-          <div className={getTotalCartAmount() === 0 ? '' : 'dot'}></div>
+          {getCartItemsCount() > 0 && <span className="cart-badge">{getCartItemsCount()}</span>}
         </div>
       )}
       {!token ? (
@@ -472,7 +482,7 @@ const Navbar = ({ openAuth, setSkipSplash }) => {
               <Link to="/cart" onClick={closeSidebar}>
                 <FiShoppingCart className="navbar-icon" />
               </Link>
-              <div className={getTotalCartAmount() === 0 ? '' : 'dot'}></div>
+              {getCartItemsCount() > 0 && <span className="cart-badge">{getCartItemsCount()}</span>}
             </div>
           )}
           {token && (
