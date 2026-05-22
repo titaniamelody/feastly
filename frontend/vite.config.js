@@ -20,3 +20,9 @@ export default defineConfig({
     }
   }
 })
+export default defineConfig({
+  plugins: [react()],
+  build: {
+    cssMinify: false  // add this
+  }
+})
