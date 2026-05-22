@@ -15,7 +15,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 createRoot(document.getElementById('root')).render(
-  <BrowserRouter basename="/feastly">
+  <BrowserRouter basename="/">
     <ToastContainer 
       position="bottom-right" 
       autoClose={3000} 
