@@ -12,9 +12,10 @@
 
 .navbar{
     padding: 20px 48px;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
     align-items: center;
+    gap: 40px;
     background-color: color-mix(in srgb, var(--bg-primary) 88%, transparent);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -35,15 +36,13 @@
     letter-spacing: -2px;
     text-shadow: 0px 2px 10px rgba(255, 107, 53, 0.3);
     position: relative;
+    white-space: nowrap;
 }
 
 .navbar .logo-text::after{
     content: '🍴';
-    position: absolute;
-    right: -38px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 26px;
+    margin-left: 12px;
+    font-size: 28px;
     -webkit-text-fill-color: initial;
 }
 
@@ -57,8 +56,8 @@
     gap: 8px;
     color: var(--text-primary);
     font-size: 16px; 
-    flex: 1;
     justify-content: center;
+    width: 100%;
 }
 
 .navbar-menu a{
@@ -560,8 +559,8 @@
 }
 
 @media (max-width: 1050px){
-    .navbar .logo{
-        width: 140px;
+    .navbar {
+        gap: 30px;
     }
     .navbar-menu{
         gap: 20px;
@@ -570,21 +569,23 @@
     .navbar-right{
         gap: 15px;
     }
-    .navbar-right img{
-        width: 22px;
-    }
-    .navbar-right button{
-        padding: 8px 25px;
-    }
 }
 
 @media (max-width: 900px){
-    .navbar .logo{
-        width: 120px;
+    .navbar {
+        grid-template-columns: auto 1fr;
+        padding: 16px 20px;
+        gap: 20px;
+    }
+    .navbar .logo-text {
+        font-size: 36px;
+    }
+    .navbar .logo-text::after {
+        margin-left: 8px;
+        font-size: 20px;
     }
     .navbar-menu{
-        gap: 15px;
-        font-size: 16px;
+        display: none;
     }
     .navbar-right{
         gap: 12px;
@@ -844,7 +845,9 @@
 
 @media (max-width: 900px) {
     .navbar {
+        grid-template-columns: auto 1fr;
         padding: 16px 20px;
+        gap: 20px;
     }
 
     .navbar .logo-text {
@@ -852,7 +855,7 @@
     }
 
     .navbar .logo-text::after {
-        right: -30px;
+        margin-left: 8px;
         font-size: 20px;
     }
 }
@@ -887,6 +890,8 @@
 
     .navbar {
         padding: 14px 16px;
+        grid-template-columns: auto 1fr;
+        gap: 12px;
     }
 
     .navbar .logo-text {
@@ -895,7 +900,7 @@
     }
 
     .navbar .logo-text::after {
-        right: -26px;
+        margin-left: 6px;
         font-size: 18px;
     }
 
