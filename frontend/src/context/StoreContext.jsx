@@ -8,7 +8,7 @@ const StoreContextProvider = (props) => {
 
     const [cartItems, setCartItems] = useState({})
     // Use relative paths - Vite proxy will handle routing to backend
-    const url = ""
+    const url = import.meta.env.VITE_API_URL || ""
     const [token, setToken] = useState("")
     const [userName, setUserName] = useState("")
     const [userEmail, setUserEmail] = useState("")
