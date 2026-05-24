@@ -45,16 +45,6 @@ const startServer = async () => {
     console.log("Category router mounted at /api/category")
     console.log("Seed router mounted at /api/seed")
 
-    const frontendPath = path.join(__dirname, '../frontend/dist')
-    app.use(express.static(frontendPath))
-
-    app.use((req, res, next) => {
-        if (req.path.startsWith('/api') || req.path.startsWith('/images')) {
-            return next()
-        }
-        res.sendFile(path.join(frontendPath, 'index.html'))
-    })
-
     app.listen(port, () => {
         console.log(`Server started on http://localhost:${port}`)
     })
