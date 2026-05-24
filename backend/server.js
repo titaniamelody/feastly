@@ -21,8 +21,23 @@ const app = express()
 const port = 4000
 
 app.use(express.json())
+
+// Configure CORS to allow requests from frontend
+const allowedOrigins = [
+  process.env.FRONTEND_URL,
+  "http://localhost:5173",
+  "http://localhost:3000",
+  "https://feastly-eta.vercel.app"
+].filter(Boolean)
+
 app.use(cors({
-  origin: process.env.FRONTEND_URL || "http://localhost:5173",
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true)
+    } else {
+      callback(new Error('CORS policy: origin not allowed'))
+    }
+  },
   credentials: true
 }))
 
