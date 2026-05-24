@@ -9,6 +9,7 @@ import categoryRouter from './routes/categoryRoute.js'
 import seedRouter from './routes/seedRoute.js'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import { uploadsDir } from './config/uploads.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -66,7 +67,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/food', foodRouter)
-app.use('/images', express.static(path.join(__dirname, 'uploads')))
+app.use('/images', express.static(uploadsDir))
 app.use('/api/user', userRouter)
 app.use('/api/order', orderRouter)
 app.use('/api/category', categoryRouter)

@@ -6,11 +6,12 @@ import {
   listCategories,
 } from "../controllers/categoryController.js";
 import { requireAdmin } from "../middleware/auth.js";
+import { uploadsDir } from "../config/uploads.js";
 
 const categoryRouter = express.Router();
 
 const storage = multer.diskStorage({
-  destination: "uploads",
+  destination: uploadsDir,
   filename: (req, file, cb) => cb(null, `${Date.now()}${file.originalname}`),
 });
 
