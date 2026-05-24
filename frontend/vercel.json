@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://food-del-dusky-six.vercel.app/api/:path*"
+    },
+    {
+      "source": "/images/:path*",
+      "destination": "https://food-del-dusky-six.vercel.app/images/:path*"
+    }
+  ]
+}
