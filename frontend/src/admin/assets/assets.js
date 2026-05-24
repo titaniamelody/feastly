@@ -14,4 +14,6 @@ export const assets ={
     parcel_icon
 }
 
-export const url = import.meta.env.VITE_API_URL || ''
+import { BACKEND_URL } from '../../utils/imageUrl'
+
+export const url = import.meta.env.VITE_API_URL || BACKEND_URL

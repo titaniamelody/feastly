@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { getImageUrl as buildImageUrl } from "../utils/imageUrl";
+import { BACKEND_URL, getImageUrl as buildImageUrl } from "../utils/imageUrl";
 
 export const StoreContext = createContext(null)
 
@@ -9,7 +9,7 @@ const StoreContextProvider = (props) => {
 
     const [cartItems, setCartItems] = useState({})
     // Use relative paths - Vite proxy will handle routing to backend
-    const url = import.meta.env.VITE_API_URL || ""
+    const url = import.meta.env.VITE_API_URL || BACKEND_URL
     const [token, setToken] = useState("")
     const [userName, setUserName] = useState("")
     const [userEmail, setUserEmail] = useState("")

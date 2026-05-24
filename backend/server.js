@@ -1,6 +1,7 @@
 import dotenv from 'dotenv'
 import express from 'express'
 import cors from 'cors'
+import fs from 'fs'
 import { connectDB } from './config/db.js'
 import foodRouter from './routes/foodRoute.js'
 import userRouter from './routes/userRoute.js'
@@ -18,17 +19,17 @@ dotenv.config({ path: path.join(__dirname, '.env') })
 
 const app = express()
 const port = process.env.PORT || 4000
-const isVercel = process.env.VERCEL === '1'
 
 const allowedOrigins = [
   'https://feastly-eta.vercel.app',
+  'https://feastly-titaniamelodys-projects.vercel.app',
   'http://localhost:5173',
   'http://127.0.0.1:5173',
 ]
 
 app.use(cors({
   origin(origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
+    if (!origin || allowedOrigins.includes(origin) || /\.vercel\.app$/.test(origin)) {
       callback(null, true)
     } else {
       callback(null, false)
@@ -41,42 +42,39 @@ app.use(cors({
 
 app.use(express.json())
 
-let dbReady = null
-const ensureDb = () => {
-  if (!dbReady) {
-    dbReady = connectDB().catch((err) => {
-      dbReady = null
-      throw err
-    })
-  }
-  return dbReady
-}
-
-app.use(async (req, res, next) => {
-  try {
-    await ensureDb()
-    next()
-  } catch (err) {
-    console.error('Database unavailable:', err.message)
-    res.status(503).json({ success: false, message: 'Database unavailable' })
-  }
-})
-
 app.get('/', (req, res) => {
   res.json({ status: 'Server is running!', message: 'Feastly API Backend' })
 })
 
-app.use('/api/food', foodRouter)
+app.get('/images/:filename', (req, res, next) => {
+  const match = req.params.filename.match(/((?:food|menu)_\d+\.png)$/i)
+  const file = match ? match[1] : req.params.filename
+  const filePath = path.join(uploadsDir, file)
+  if (fs.existsSync(filePath)) {
+    return res.sendFile(filePath)
+  }
+  next()
+})
+
 app.use('/images', express.static(uploadsDir))
+
+app.use('/api/food', foodRouter)
 app.use('/api/user', userRouter)
 app.use('/api/order', orderRouter)
 app.use('/api/category', categoryRouter)
 app.use('/api/seed', seedRouter)
 
-if (!isVercel) {
+const startServer = async () => {
+  try {
+    await connectDB()
+  } catch (err) {
+    console.error('Failed to connect to DB:', err.message)
+    process.exit(1)
+  }
+
   app.listen(port, '0.0.0.0', () => {
     console.log(`Server started on port ${port}`)
   })
 }
 
-export default app
+startServer()
