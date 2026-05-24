@@ -18,17 +18,17 @@ dotenv.config({ path: path.join(__dirname, '.env') })
 console.log('MONGO_URI env:', process.env.MONGO_URI)
 
 const app = express()
-const port = 4000
+const port = process.env.PORT || 4000
 
-app.use(express.json())
-
-// Configure CORS to allow requests from frontend
+// CORS middleware MUST be first
 app.use(cors({
-  origin: true, // Allow all origins for API requests
+  origin: true,
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }))
+
+app.use(express.json())
 
 // (optional) request logging can be added here if needed
 
