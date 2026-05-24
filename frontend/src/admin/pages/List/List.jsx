@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './List.css'
 import { url } from '../../assets/assets'
+import { getImageUrl } from '../../../utils/imageUrl'
 import axios from 'axios'
 import {toast} from 'react-toastify'
 import { FiEdit2, FiTrash2, FiX, FiChevronLeft, FiChevronRight } from 'react-icons/fi'
@@ -73,7 +74,7 @@ const List = () => {
       price: item.price,
       category: item.category,
       image: null,
-      imagePreview: `${url}/images/${item.image}`,
+      imagePreview: getImageUrl(item.image, url),
       ingredients: item.ingredients ? item.ingredients.join(", ") : "",
       prepTime: item.prepTime || "",
       servings: item.servings || "",
@@ -173,7 +174,7 @@ const List = () => {
         {paginatedList.map((item)=>{
           return (
             <div key={item._id} className='list-table-format'>
-              <img src={`${url}/images/`+item.image} alt="" />
+              <img src={getImageUrl(item.image, url)} alt="" />
               <p>{item.name}</p>
               <p>{item.category}</p>
               <p>${item.price}</p>

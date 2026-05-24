@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { getImageUrl as buildImageUrl } from "../utils/imageUrl";
 
 export const StoreContext = createContext(null)
 
@@ -101,9 +102,7 @@ const StoreContextProvider = (props) => {
         return totalAmount
     }
 
-    const getImageUrl = (imageName) => {
-        return `${url}/images/${imageName}`;
-    }
+    const getImageUrl = (imageName) => buildImageUrl(imageName, url)
 
     const contextValue = {
         food_list,

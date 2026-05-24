@@ -5,7 +5,7 @@ import { StoreContext } from '../../context/StoreContext'
 import { toast } from 'react-toastify'
 
 const ExploreMenu = ({ category, setCategory }) => {
-  const { url } = useContext(StoreContext)
+  const { url, getImageUrl } = useContext(StoreContext)
   const [menuList, setMenuList] = useState([])
 
   const fetchCategories = async () => {
@@ -31,7 +31,7 @@ const ExploreMenu = ({ category, setCategory }) => {
         {menuList.map((item, index)=>{
             return (
                 <div onClick={()=>setCategory(prev=>prev===item.name?"All":item.name)} key={item._id || index} className='explore-menu-list-item'>
-                    <img className={category===item.name?"active":""} src={`${url}/images/${item.image}`} alt={item.name} />
+                    <img className={category===item.name?"active":""} src={getImageUrl(item.image)} alt={item.name} />
                     <p>{item.name}</p>
                 </div>
             )

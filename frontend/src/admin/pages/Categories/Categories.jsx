@@ -3,6 +3,7 @@ import "./Categories.css";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { assets, url } from "../../assets/assets";
+import { getImageUrl } from "../../../utils/imageUrl";
 import { FiTrash2 } from "react-icons/fi";
 
 const Categories = () => {
@@ -114,7 +115,7 @@ const Categories = () => {
       <div className="categories-list">
         {list.map((cat) => (
           <div key={cat._id} className="categories-row">
-            <img src={`${url}/images/${cat.image}`} alt={cat.name} />
+            <img src={getImageUrl(cat.image, url)} alt={cat.name} />
             <p className="categories-name">{cat.name}</p>
             <FiTrash2
               className="delete-icon"
