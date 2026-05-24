@@ -369,9 +369,7 @@ const Navbar = ({ openAuth, setSkipSplash }) => {
             closeSidebar()
           }}
           className="navbar-signin-btn"
-        >
-          sign in
-        </button>
+        >signup</button>
       ) : mobile ? (
         <div className="navbar-sidebar-profile">
           <div className="navbar-profile-user-info">
@@ -473,9 +471,7 @@ const Navbar = ({ openAuth, setSkipSplash }) => {
               type="button"
               className="navbar-signin-btn navbar-signin-btn--compact"
               onClick={() => openAuth('Login')}
-            >
-              sign in
-            </button>
+            >signup</button>
           )}
           {token && (
             <div className="navbar-search-icon icon-wrapper">

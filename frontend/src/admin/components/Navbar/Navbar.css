@@ -119,3 +119,29 @@
         height: 40px;
     }
 }
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 10px 12px;
+        gap: 8px;
+    }
+
+    .logo-text {
+        font-size: 18px;
+    }
+
+    .navbar-right {
+        gap: 8px;
+    }
+
+    .theme-toggle {
+        width: 36px;
+        height: 36px;
+    }
+
+    .profile {
+        width: 36px;
+        height: 36px;
+        border: 1.5px solid #ff6b35;
+    }
+}

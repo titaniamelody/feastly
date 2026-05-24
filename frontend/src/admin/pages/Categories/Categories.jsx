@@ -76,7 +76,7 @@ const Categories = () => {
 
   return (
     <div className="categories add flex-col">
-      <p>Categories</p>
+      <h2>Categories</h2>
 
       <form className="categories-form flex-col" onSubmit={onSubmit}>
         <div className="add-img-upload flex-col">

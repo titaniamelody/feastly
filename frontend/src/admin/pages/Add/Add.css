@@ -56,6 +56,8 @@
 .add-product-description p,
 .add-category p,
 .add-price p,
+.add-prep-time p,
+.add-servings p,
 .add-img-upload > p {
     color: var(--text-primary);
     font-weight: 600;

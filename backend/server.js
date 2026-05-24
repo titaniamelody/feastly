@@ -21,7 +21,10 @@ const app = express()
 const port = 4000
 
 app.use(express.json())
-app.use(cors())
+app.use(cors({
+  origin: process.env.FRONTEND_URL || "http://localhost:5173",
+  credentials: true
+}))
 
 // (optional) request logging can be added here if needed
 
