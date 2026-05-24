@@ -20,7 +20,21 @@ console.log('MONGO_URI env:', process.env.MONGO_URI)
 const app = express()
 const port = process.env.PORT || 4000
 
-// CORS middleware MUST be first
+// Enable CORS with explicit headers
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+  res.header('Access-Control-Allow-Credentials', 'true')
+  
+  // Handle preflight requests
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200)
+  }
+  next()
+})
+
+// Also use cors package as backup
 app.use(cors({
   origin: true,
   credentials: true,
