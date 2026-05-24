@@ -1,17 +1,16 @@
 {
-  "buildCommand": "cd frontend && npm run build",
+  "installCommand": "npm install --prefix backend && npm install --prefix frontend",
+  "buildCommand": "npm run build --prefix frontend",
   "outputDirectory": "frontend/dist",
-  "env": {
-    "VITE_API_URL": "https://feastly-pgx8jwa5.b4a.run"
-  },
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "status": 404
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
+  "functions": {
+    "api/index.js": {
+      "memory": 1024,
+      "maxDuration": 60
     }
+  },
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "/api" },
+    { "source": "/images/:path*", "destination": "/api" },
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

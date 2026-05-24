@@ -15,57 +15,67 @@ const __dirname = path.dirname(__filename)
 
 dotenv.config({ path: path.join(__dirname, '.env') })
 
-console.log('MONGO_URI env:', process.env.MONGO_URI)
-
 const app = express()
 const port = process.env.PORT || 4000
+const isVercel = process.env.VERCEL === '1'
 
-// Enable CORS with explicit headers
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization')
-  res.header('Access-Control-Allow-Credentials', 'true')
-  
-  // Handle preflight requests
-  if (req.method === 'OPTIONS') {
-    return res.sendStatus(200)
-  }
-  next()
-})
+const allowedOrigins = [
+  'https://feastly-eta.vercel.app',
+  'http://localhost:5173',
+  'http://127.0.0.1:5173',
+]
 
-// Also use cors package as backup
 app.use(cors({
-  origin: true,
+  origin(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true)
+    } else {
+      callback(null, false)
+    }
+  },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type', 'Authorization'],
 }))
 
 app.use(express.json())
 
-// (optional) request logging can be added here if needed
-
-const startServer = async () => {
-    try {
-        await connectDB()
-    } catch (err) {
-        console.error('Failed to connect to DB:', err.message)
-        process.exit(1)
-    }
-
-    app.use("/api/food", foodRouter)
-    app.use("/images", express.static(path.join(__dirname, 'uploads')))
-    app.use("/api/user", userRouter)
-    app.use("/api/order", orderRouter)
-    app.use("/api/category", categoryRouter)
-    app.use("/api/seed", seedRouter)
-    console.log("Category router mounted at /api/category")
-    console.log("Seed router mounted at /api/seed")
-
-    app.listen(port, () => {
-        console.log(`Server started on http://localhost:${port}`)
+let dbReady = null
+const ensureDb = () => {
+  if (!dbReady) {
+    dbReady = connectDB().catch((err) => {
+      dbReady = null
+      throw err
     })
+  }
+  return dbReady
 }
 
-startServer()
+app.use(async (req, res, next) => {
+  try {
+    await ensureDb()
+    next()
+  } catch (err) {
+    console.error('Database unavailable:', err.message)
+    res.status(503).json({ success: false, message: 'Database unavailable' })
+  }
+})
+
+app.get('/', (req, res) => {
+  res.json({ status: 'Server is running!', message: 'Feastly API Backend' })
+})
+
+app.use('/api/food', foodRouter)
+app.use('/images', express.static(path.join(__dirname, 'uploads')))
+app.use('/api/user', userRouter)
+app.use('/api/order', orderRouter)
+app.use('/api/category', categoryRouter)
+app.use('/api/seed', seedRouter)
+
+if (!isVercel) {
+  app.listen(port, '0.0.0.0', () => {
+    console.log(`Server started on port ${port}`)
+  })
+}
+
+export default app
